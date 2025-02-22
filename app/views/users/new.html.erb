@@ -1,0 +1,47 @@
+<%= form_with model:@user, url: users_path,  method: :post  do    |form| %>
+  <% if @user.errors.any?%>
+    <div class="error-messages">
+      <h2>
+        <%= pluralize(@user.errors.count, "error")%> prohibited this user from being saved
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do  |message|%>
+          <li> <%= message%> </li>
+        <% end%>
+      </ul>
+    </div>
+  <%end%>
+  <div>
+    <%= form.label :username%>
+    <%= form.text_field :username, name: "user[username]"  %>
+  </div>
+  <div>
+    <%= form.label :email%>
+    <%= form.email_field :email, name: "user[email]"  %>
+  </div>
+  <div>
+    <%= form.label :password%>
+    <%= form.password_field :password,  name:"user[password]"  %>
+  </div>
+  <%= form.submit "Submit"  %>
+<%end%>
+<!--
+
+
+<%= form_tag "/users", method: "post" ,  data: {turbo: true} do %>
+  <div>
+    <%= label_tag "user[username]", "Enter User" %>
+    <%= text_field_tag "user[username]" %>
+  </div>
+  <div>
+    <%= label_tag "user[email]", "Enter email" %>
+    <%= email_field_tag "user[email]" %>
+  </div>
+  <div>
+    <%= label_tag "user[password]", "Enter Password" %>
+    <%= password_field_tag "user[password]" %>
+  </div>
+  <%= submit_tag "Submit"  %>
+<%end %>
+
+-->
